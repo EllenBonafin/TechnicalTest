@@ -42,6 +42,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   gap: 5px;
   padding: 5px;
+  
 
   @media (min-width: 768px) {
     flex-direction: row;

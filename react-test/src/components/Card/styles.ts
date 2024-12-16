@@ -24,14 +24,18 @@ export const TaskInfo = styled.div`
 export const TaskName = styled.h3`
   font-family: "Poppins", sans-serif;
   font-size: 18px;
-  color: #333;
+  color: #696969;
   margin: 0 0 5px;
+  text-transform: capitalize;
 `;
 
 export const Status = styled.p<{ isCompleted: boolean }>`
-  font-size: 14px;
-  color: ${(props) => (props.isCompleted ? "#2ecc71" : "#e74c3c")};
-  font-weight: bold;
+    cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: ${(props) => (props.isCompleted ? "green" : "gray")};
+  color: white;
+  width: 80px;
 `;
 
 export const DeleteButton = styled.button`

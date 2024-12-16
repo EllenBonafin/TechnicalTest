@@ -1,12 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Task } from "../../types/task";
-import {
-  Card,
-  TaskInfo,
-  TaskName,
-  Status,
-  DeleteButton,
-} from "./styles";
+import { Card, TaskInfo, TaskName, Status, DeleteButton } from "./styles";
 
 interface TaskCardProps {
   task: Task;
@@ -14,12 +8,18 @@ interface TaskCardProps {
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({ task, onDelete }) => {
+  const [isCompleted, setIsCompleted] = useState(task.status);
+
+  const toggleStatus = () => {
+    setIsCompleted(!isCompleted);
+  };
+
   return (
     <Card>
       <TaskInfo>
         <TaskName>{task.name}</TaskName>
-        <Status isCompleted={task.status}>
-          {task.status ? "Concluído" : "Pendente"}
+        <Status isCompleted={isCompleted} onClick={toggleStatus}>
+          {isCompleted ? "Finished" : "Pending"}
         </Status>
       </TaskInfo>
       <DeleteButton onClick={() => onDelete(task.id)}>Deletar</DeleteButton>

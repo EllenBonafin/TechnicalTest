@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     try {
       const response = await api.get<Task[]>('/');
 
-      console.log(response)
+      console.log(response);
       setTodos(response.data);
     } catch (error) {
       console.error("Error fetching todos:", error);
@@ -33,10 +33,8 @@ const Home: React.FC = () => {
 
   const handleDeleteTodo = async (id: number) => {
     try {
-      const response = await api.delete<Task[]>(`/delete`, {
-        data: { id },
-      });
-      setTodos(response.data);
+      await api.delete<Task[]>(`/delete/${id}`);
+      fetchTodos();
     } catch (error) {
       console.error("Error deleting todo:", error);
     }
@@ -54,7 +52,7 @@ const Home: React.FC = () => {
     setIsModalOpen(false);
     if (!taskName.trim()) return;
     try {
-      await api.post<Task>(`/create`, { name: taskName });
+      await api.post<Task>('/create', { name: taskName });
     } catch (error) {
       console.error("Error adding todo:", error);
     }
